@@ -51,9 +51,7 @@ export class BookedForComponent implements OnInit {
   setFormValue(booked:Booked){
     if(booked){
       this.bookForm.controls['id']?.setValue(booked.id)
-      this.bookForm.controls['name']?.setValue(booked.reserver.name)
-      this.bookForm.controls['email']?.setValue(booked.reserver.email)
-      this.bookForm.controls['phone']?.setValue(booked.reserver.phone)
+      this.bookForm.controls['reserver']?.setValue(booked.reserver)
       this.bookForm.controls['roomNumber']?.setValue(booked.roomNumber)
       this.bookForm.controls['duration']?.setValue(booked.duration)
       this.bookForm.controls['count']?.setValue(booked.count)

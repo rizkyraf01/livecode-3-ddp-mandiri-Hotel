@@ -1,42 +1,69 @@
 <h3>Form Hotel</h3>
 <form (ngSubmit)="onSubmit()" [formGroup]="bookForm">
-<div class="input-group mb-3">
+  <div class="input-group mb-3">
     <div formGroupName="reserver">
-    <input placeholder="Nama"
-    type="text"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('name')}"
-    formControlName="name">
-    <input placeholder="Email"
-    type="text"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('email')}"
-    formControlName="email">
-    <input placeholder="No Phone"
-    type="string"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('phone')}"
-    formControlName="phone">
+      <input
+        placeholder="Nama"
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isFormValid('name') }"
+        [readOnly]="bookForm.value.id"
+        formControlName="name"
+      />
+      <input
+        placeholder="Email"
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isFormValid('email') }"
+        [readOnly]="bookForm.value.id"
+        formControlName="email"
+      />
+      <input
+        placeholder="No Phone"
+        type="string"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': isFormValid('phone') }"
+        [readOnly]="bookForm.value.id"
+        formControlName="phone"
+      />
     </div>
-    <input placeholder="No Kamar"
-    type="number"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('roomNumber')}"
-    formControlName="roomNumber">
-    <input placeholder="duration"
-    type="number"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('duration')}"
-    formControlName="duration">
-    <input placeholder="Total Tamu"
-    type="number"
-    class="form-control"
-    [ngClass]="{'is-invalid': isFormValid('count')}"
-    formControlName="count">
-</div>
-<button appBsButton [disabled]="!bookForm.valid">Submit</button> 
-<app-validation-message [control]="bookForm.get('name')" [field]="'nama'"></app-validation-message>
-<app-validation-message [control]="bookForm.get('roomNumber')" [field]="'Kamar'"></app-validation-message>
-<app-validation-message [control]="bookForm.get('duration')" [field]="'Lama Menginap'"></app-validation-message>
-<app-validation-message [control]="bookForm.get('duration')" [field]="'Total Tamu'"></app-validation-message>
+    <input
+      placeholder="No Kamar"
+      type="number"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+      formControlName="roomNumber"
+    />
+    <input
+      placeholder="duration"
+      type="number"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': isFormValid('duration') }"
+      formControlName="duration"
+    />
+    <input
+      placeholder="Total Tamu"
+      type="number"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': isFormValid('count') }"
+      formControlName="count"
+    />
+  </div>
+  <button appBsButton [disabled]="!bookForm.valid">Submit</button>
+  <app-validation-message
+    [control]="bookForm.get('name')"
+    [field]="'nama'"
+  ></app-validation-message>
+  <app-validation-message
+    [control]="bookForm.get('roomNumber')"
+    [field]="'Kamar'"
+  ></app-validation-message>
+  <app-validation-message
+    [control]="bookForm.get('duration')"
+    [field]="'Lama Menginap'"
+  ></app-validation-message>
+  <app-validation-message
+    [control]="bookForm.get('duration')"
+    [field]="'Total Tamu'"
+  ></app-validation-message>
 </form>

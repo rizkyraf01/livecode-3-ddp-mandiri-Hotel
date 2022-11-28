@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NIGHTLY_FEE } from 'src/app/shared/utils/nightly-fee.utils';
 import { Booked } from '../model/booked.model';
 import { HotelService } from '../service/hotel.service';
 
@@ -10,9 +11,11 @@ import { HotelService } from '../service/hotel.service';
   styleUrls: ['./booked-for.component.scss']
 })
 export class BookedForComponent implements OnInit {
-
+  nigthFee:number= NIGHTLY_FEE
   booking!:Booked
-  constructor(private readonly hotelService:HotelService,private readonly route:ActivatedRoute, private readonly router:Router) { }
+  constructor(private readonly hotelService:HotelService,
+    private readonly route:ActivatedRoute, 
+    private readonly router:Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -30,7 +33,16 @@ export class BookedForComponent implements OnInit {
   }
 
   onSubmit():void{
-    this.hotelService.save(this.bookForm.value).subscribe();
+    const payload =this.bookForm.value;
+    const {reserver,roomNumber,duration}=payload
+    const totalPrice =duration*NIGHTLY_FEE
+    this.hotelService.save(payload).subscribe({
+      next:()=>{
+        alert(
+          `Tamu ${reserver.name} telah melakukan pemesanan untuk kamar ${roomNumber} selama ${duration} malam dengan total tagihan sebesar ${totalPrice}.`
+        );
+      }
+    })
     this.bookForm.reset();
     this.router.navigateByUrl('booked')
   }
@@ -46,8 +58,8 @@ export class BookedForComponent implements OnInit {
       email:new FormControl('',[Validators.required]),
       phone:new FormControl('',[Validators.required]),
     })
-
   })
+  
   setFormValue(booked:Booked){
     if(booked){
       this.bookForm.controls['id']?.setValue(booked.id)

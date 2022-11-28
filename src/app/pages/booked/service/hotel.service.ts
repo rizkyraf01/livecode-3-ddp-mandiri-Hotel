@@ -6,14 +6,14 @@ import { Booked } from '../model/booked.model';
   providedIn: 'root'
 })
 export class HotelService {
-  private bookings:Booked[]=[];
+  private bookings:Booked[]=[];//1
   private storage:Storage=sessionStorage;
   constructor() { }
   list():Observable<Booked[]>{
     return new Observable<Booked[]>((obs:Observer<Booked[]>)=>{
       const sessionStorage:string=this.storage.getItem('bookings') as string
       try{
-        const bookings:Booked[]=sessionStorage?JSON.parse(sessionStorage):[  ]
+        const bookings:Booked[]=sessionStorage?JSON.parse(sessionStorage):[]
         this.bookings=bookings;
         this.setToStorage()
         obs.next(this.bookings);

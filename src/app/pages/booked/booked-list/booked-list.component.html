@@ -6,6 +6,7 @@
         <th scope="col">id</th>
         <th scope="col">Nama</th>
         <th scope="col">Nomor Kamar</th>
+        <th scope="col">Harga Kamar</th>
         <th scope="col">Lama Menginap</th>
         <th scope="col">Jumlah Orang</th>
         <th scope="col">Status</th>
@@ -16,9 +17,10 @@
       <tr>
         <th scope="row">{{ booking.id }}</th>
         <td>{{ booking.reserver.name }}</td>
-        <td>{{ booking.roomNumber }}</td>
-        <td>{{ booking.duration }}</td>
-        <td>{{ booking.count }}</td>
+        <td> Nomor {{ booking.roomNumber }} </td>
+        <td>Rp.{{ booking.duration*nigthFee}}</td>
+        <td>{{ booking.duration }} Malam</td>
+        <td>{{ booking.count }} Orang</td>
         <td>{{ booking.status }}</td>
         <td>
           <button

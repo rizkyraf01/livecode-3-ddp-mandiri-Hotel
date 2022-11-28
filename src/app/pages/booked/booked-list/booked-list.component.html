@@ -1,0 +1,51 @@
+<h4>{{ "List Hotel" | uppercase }}</h4>
+<div class="shadow-sm p-3 mb-5 bg-body rounded">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Nomor Kamar</th>
+        <th scope="col">Lama Menginap</th>
+        <th scope="col">Jumlah Orang</th>
+        <th scope="col">Status</th>
+        <th scope="col">Aksi</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let booking of bookings">
+      <tr>
+        <th scope="row">{{ booking.id }}</th>
+        <td>{{ booking.reserver.name }}</td>
+        <td>{{ booking.roomNumber }}</td>
+        <td>{{ booking.duration }}</td>
+        <td>{{ booking.count }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <button
+            class="btn btn-link btn-sm float-end"
+            
+            (click)="onDeleteHotel(booking)"
+          >
+            <i>[delete]</i>
+          </button>
+          <button
+          class="btn btn-link btn-sm float-end"
+          (click)="onCheckIn(booking)"        
+          >
+          <i>[Check-in]</i>
+        </button>
+        <button
+        class="btn btn-link btn-sm float-end"
+        (click)="onCheckOut(booking)"        >
+        <i>[Check-out]</i>
+      </button>
+      <button
+      class="btn btn-link btn-sm float-end"
+      routerLink="/booked/{{booking.id}}">
+      <i> [Edit]</i>
+    </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -21,9 +21,10 @@ export class BookedForComponent implements OnInit {
         this.hotelService.get(+id).subscribe({
           next:(booked:Booked)=>{
             this.booking=booked
+            this.setFormValue(this.booking)
           }
         })
-        this.setFormValue(this.booking)
+
       }
     })
   }
@@ -58,7 +59,6 @@ export class BookedForComponent implements OnInit {
       this.bookForm.controls['count']?.setValue(booked.count)
     }
   }
-  get name(){return this.bookForm.get('name')!};
   
   isFormValid(bookField:string){
     const control:AbstractControl = this.bookForm.get(bookField) as AbstractControl;

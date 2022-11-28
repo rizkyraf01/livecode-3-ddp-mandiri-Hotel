@@ -34,6 +34,9 @@
     [ngClass]="{'is-invalid': isFormValid('count')}"
     formControlName="count">
 </div>
-<button appBsButton [disabled]="!bookForm.valid">Add</button> 
-<app-validation-message [control]="bookForm.get('name')" [field]="'booked'"></app-validation-message>
+<button appBsButton [disabled]="!bookForm.valid">Submit</button> 
+<app-validation-message [control]="bookForm.get('name')" [field]="'nama'"></app-validation-message>
+<app-validation-message [control]="bookForm.get('roomNumber')" [field]="'Kamar'"></app-validation-message>
+<app-validation-message [control]="bookForm.get('duration')" [field]="'Lama Menginap'"></app-validation-message>
+<app-validation-message [control]="bookForm.get('duration')" [field]="'Total Tamu'"></app-validation-message>
 </form>

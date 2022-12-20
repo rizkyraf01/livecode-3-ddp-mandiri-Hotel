@@ -16,6 +16,15 @@ export class BookedForComponent implements OnInit {
   constructor(private readonly hotelService:HotelService,
     private readonly route:ActivatedRoute, 
     private readonly router:Router) { }
+      //only number will be add
+  
+    keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -44,29 +53,32 @@ export class BookedForComponent implements OnInit {
       }
     })
     this.bookForm.reset();
-    this.router.navigateByUrl('booked')
+    this.router.navigateByUrl('hotel/booked')
   }
 
   bookForm:FormGroup = new FormGroup({
     id: new FormControl(null),
-    roomNumber: new FormControl(null,[Validators.required]),
-    duration: new FormControl(null,[Validators.required]),
-    count: new FormControl(null,[Validators.required]),
+    roomNumber: new FormControl(null, [Validators.required,Validators.minLength(1)]),
+    duration: new FormControl(null, [Validators.required,Validators.minLength(1)]),
+    count: new FormControl(null, [Validators.required,Validators.minLength(1)]),
     status: new FormControl('reserved'),
     reserver:new FormGroup({
-      name: new FormControl('',[Validators.required]),
-      email:new FormControl('',[Validators.required]),
-      phone:new FormControl('',[Validators.required]),
+      id:new FormControl(null),
+      name: new FormControl(null, [Validators.required,Validators.minLength(2)]),
+      email:new FormControl('',[Validators.required,Validators.email]),
+      phone:new FormControl(null, [Validators.required,Validators.minLength(12),Validators.pattern("^[0-9]*$")]),
     })
   })
-  
   setFormValue(booked:Booked){
     if(booked){
-      this.bookForm.controls['id']?.setValue(booked.id)
-      this.bookForm.controls['reserver']?.setValue(booked.reserver)
-      this.bookForm.controls['roomNumber']?.setValue(booked.roomNumber)
-      this.bookForm.controls['duration']?.setValue(booked.duration)
-      this.bookForm.controls['count']?.setValue(booked.count)
+      const {id,reserver,count,duration,roomNumber}=booked
+      this.bookForm.get('id')?.setValue(id)
+      this.bookForm.get(['reserver', 'name'])?.setValue(reserver.name);
+      this.bookForm.get(['reserver', 'email'])?.setValue(reserver.email);
+      this.bookForm.get(['reserver', 'phone'])?.setValue(reserver.phone);
+      this.bookForm.get(['count'])?.setValue(count);
+      this.bookForm.get(['roomNumber'])?.setValue(roomNumber);
+      this.bookForm.get(['duration'])?.setValue(duration);
     }
   }
   

@@ -1,52 +1,88 @@
-<h4>{{ "List Hotel" | uppercase }}</h4>
-<div class="shadow-sm p-3 mb-5 bg-body rounded">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Nama</th>
-        <th scope="col">Nomor Kamar</th>
-        <th scope="col">Harga Kamar</th>
-        <th scope="col">Lama Menginap</th>
-        <th scope="col">Jumlah Orang</th>
-        <th scope="col">Status</th>
-        <th scope="col">Aksi</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let booking of bookings">
-      <tr>
-        <th scope="row">{{ booking.id }}</th>
-        <td>{{ booking.reserver.name }}</td>
-        <td> Nomor {{ booking.roomNumber }} </td>
-        <td>Rp.{{ booking.duration*nigthFee}}</td>
-        <td>{{ booking.duration }} Malam</td>
-        <td>{{ booking.count }} Orang</td>
-        <td>{{ booking.status }}</td>
-        <td>
-          <button
-            class="btn btn-link btn-sm float-end"            
-            (click)="onDeleteHotel(booking)"
-          >
-            <i>[delete]</i>
-          </button>
-          <button
-          class="btn btn-link btn-sm float-end"
-          (click)="onCheckIn(booking)"        
-          >
-          <i>[Check-in]</i>
-        </button>
-        <button
-        class="btn btn-link btn-sm float-end"
-        (click)="onCheckOut(booking)"        >
-        <i>[Check-out]</i>
-      </button>
-      <button
-      class="btn btn-link btn-sm float-end"
-      routerLink="/booked/{{booking.id}}">
-      <i> [Edit]</i>
-    </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">List Booked</h1>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2"
+    >
+      <h6>Daftar Tamu Menginap</h6>
+      <div class="btn btn-outline-primary" routerLink="/hotel/booked/form">
+        <i class="bi bi-plus"></i> Tambah
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Nomor Kamar</th>
+            <th scope="col">Harga Kamar</th>
+            <th scope="col">Lama Menginap</th>
+            <th scope="col">Jumlah Orang</th>
+            <th scope="col">Status</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let booking of bookings" class="text-center">
+          <tr>
+            <td scope="row">{{ booking.id }}</td>
+            <td>{{ booking.reserver.name }}</td>
+            <td>Nomor {{ booking.roomNumber }}</td>
+            <td>Rp.{{ booking.duration * nigthFee }}</td>
+            <td>{{ booking.duration }} Malam</td>
+            <td>{{ booking.count }} Orang</td>
+            <td>{{ booking.status }}</td>
+            <td>
+              <a
+                class="btn btn-primary a-btn-slide-text"
+                (click)="onCheckIn(booking)"
+              >
+                <span
+                  class="glyphicon glyphicon-plus"
+                  aria-hidden="true"
+                ></span>
+                <span><strong>Check In</strong></span>
+              </a>
+              <a
+                class="btn btn-primary a-btn-slide-text"
+                (click)="onCheckOut(booking)"
+              >
+                <span
+                  class="glyphicon glyphicon-edit"
+                  aria-hidden="true"
+                ></span>
+                <span><strong>Check Out</strong></span>
+              </a>
+              <a
+                class="btn btn-primary a-btn-slide-text"
+                routerLink="/hotel/booked/form/{{ booking.id }}"
+              >
+                <span
+                  class="glyphicon glyphicon-eye-open"
+                  aria-hidden="true"
+                ></span>
+                <span><strong>Edit</strong></span>
+              </a>
+              <a
+                class="btn btn-primary a-btn-slide-text"
+                (click)="onDeleteHotel(booking)"
+              >
+                <span
+                  class="glyphicon glyphicon-remove"
+                  aria-hidden="true"
+                ></span>
+                <span><strong>Delete</strong></span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

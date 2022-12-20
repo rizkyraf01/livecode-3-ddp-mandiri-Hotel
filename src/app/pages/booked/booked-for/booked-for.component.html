@@ -1,69 +1,148 @@
-<h3>Form Hotel</h3>
-<form (ngSubmit)="onSubmit()" [formGroup]="bookForm">
-  <div class="input-group mb-3">
-    <div formGroupName="reserver">
-      <input
-        placeholder="Nama"
-        type="text"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': isFormValid('name') }"
-        [readOnly]="bookForm.value.id"
-        formControlName="name"
-      />
-      <input
-        placeholder="Email"
-        type="text"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': isFormValid('email') }"
-        [readOnly]="bookForm.value.id"
-        formControlName="email"
-      />
-      <input
-        placeholder="No Phone"
-        type="string"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': isFormValid('phone') }"
-        [readOnly]="bookForm.value.id"
-        formControlName="phone"
-      />
-    </div>
-    <input
-      placeholder="No Kamar"
-      type="number"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
-      formControlName="roomNumber"
-    />
-    <input
-      placeholder="duration"
-      type="number"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': isFormValid('duration') }"
-      formControlName="duration"
-    />
-    <input
-      placeholder="Total Tamu"
-      type="number"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': isFormValid('count') }"
-      formControlName="count"
-    />
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Book Form</h1>
+</div>
+
+<div class="card">
+  <div class="card-header">Form Hotel Mandirian</div>
+  <div class="card-body">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3 row" formGroupName="reserver">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserver.name') }"
+            id="staticEmail"
+            formControlName="name"
+            [readOnly]="bookForm.value.id"
+            placeholder="Nama pemesan"
+          />
+          <app-validation-message
+            [control]="bookForm.get('reserver.name')"
+            [field]="'name'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reserver'">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-8">
+          <input
+            type="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserver.email') }"
+            id="inputPassword"
+            formControlName="email"
+            [readOnly]="bookForm.value.id"
+            placeholder="Email pemesan"
+          />
+          <app-validation-message
+            [control]="bookForm.get('reserver.email')"
+            [field]="'email'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row" [formGroupName]="'reserver'">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >No Handphone</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': isFormValid('reserver.phone') }"
+            (keypress)="keyPress($event)"
+            id="inputPassword"
+            formControlName="phone"
+            [readOnly]="bookForm.value.id"
+            placeholder="No handphone pemesan"
+          />
+          <app-validation-message
+            [control]="bookForm.get('reserver.phone')"
+            [field]="'no handphone'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Nomor Kamar</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            (keypress)="keyPress($event)"
+            [ngClass]="{ 'is-invalid': isFormValid('roomNumber') }"
+            id="inputPassword"
+            formControlName="roomNumber"
+            placeholder="Nomor kamar"
+          />
+          <app-validation-message
+            [control]="bookForm.get('roomNumber')"
+            [field]="'nomor kamar'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Lama Menginap</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            (keypress)="keyPress($event)"
+            [ngClass]="{ 'is-invalid': isFormValid('duration') }"
+            id="inputPassword"
+            formControlName="duration"
+            placeholder="Lama menginap"
+          />
+          <app-validation-message
+            [control]="bookForm.get('duration')"
+            [field]="'lama menginap'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"
+          >Jumlah Tamu</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            (keypress)="keyPress($event)"
+            [ngClass]="{ 'is-invalid': isFormValid('count') }"
+            id="inputPassword"
+            formControlName="count"
+            [readOnly]="bookForm.value.id"
+            placeholder="Jumlah tamu"
+          />
+          <app-validation-message
+            [control]="bookForm.get('count')"
+            [field]="'jumlah tamu'"
+          ></app-validation-message>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-8">
+          <button
+            class="btn btn-outline-primary"
+            [disabled]="!bookForm.valid"
+          >
+            <i class="bi bi-save"></i> Simpan</button
+          >&nbsp;
+          <button
+            class="btn btn-outline-secondary"
+            routerLink="/hotel/booked"
+          >
+            <i class="bi bi-arrow-left"></i> Kembali
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
-  <button appBsButton [disabled]="!bookForm.valid">Submit</button>
-  <app-validation-message
-    [control]="bookForm.get('name')"
-    [field]="'nama'"
-  ></app-validation-message>
-  <app-validation-message
-    [control]="bookForm.get('roomNumber')"
-    [field]="'Kamar'"
-  ></app-validation-message>
-  <app-validation-message
-    [control]="bookForm.get('duration')"
-    [field]="'Lama Menginap'"
-  ></app-validation-message>
-  <app-validation-message
-    [control]="bookForm.get('duration')"
-    [field]="'Total Tamu'"
-  ></app-validation-message>
-</form>
+</div>

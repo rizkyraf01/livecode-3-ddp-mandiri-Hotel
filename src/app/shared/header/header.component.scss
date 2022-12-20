@@ -1,0 +1,117 @@
+$orange: #DF4500;
+$gray: #35302D;
+$gray-shine: #3C3735;
+$white-off: #DFDBD9;
+$sans: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+
+.gradient-custom-2 {
+
+    background: #fccb90;
+    
+    background: -webkit-linear-gradient(to right, #24eee4, #367fd8, #364cdd);
+    
+    background: linear-gradient(to right, #24eee4, #367fd8, #364cdd);
+    }
+    
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+
+body {
+    overflow-x: hidden;
+  }
+  #id{
+    display: block;
+    padding: 1em 0;
+    color: #24eee4;
+    text-decoration: none;
+    transition: .15s linear color;
+    
+    &:hover{
+      color: #fff;
+      span{ color: $orange; }
+    }
+  }
+  
+  #sidebarMenu {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    // ul{
+    //   border-top: solid 1px $gray-shine;
+    // }
+    
+    li{
+      border-bottom: solid 1px $gray-shine;
+    }
+    a{
+      padding: 1.1em 0;
+      color: #24eee4;
+      font: 400 1.125em $sans;
+      text{
+        align: center;
+        transform: lowercase;
+      }
+      
+      &:hover{
+        color: #364cdd;
+      }
+    }
+  }
+  
+  #sidebarMenu .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  #sidebarMenu .list-group {
+    width: 15rem;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+  
+  #header.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+  
+  @media (min-width: 768px) {
+    #sidebarMenu {
+      margin-left: 0;
+    }
+  
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
+    .show
+    {
+      margin-left: 0!important;
+    }
+    .hide
+    {
+      margin-left: -15rem!important;
+    }
+  }
+  @media (max-width: 767px) {
+    .show
+    {
+      margin-left: -15rem!important;
+    }
+    .hide
+    {
+      margin-left: -0!important;
+    }
+  }
